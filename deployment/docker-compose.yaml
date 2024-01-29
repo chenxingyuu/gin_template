@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001-8004:8080"
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: on-failure
+    environment:
+      - PROJECT_ENV=dev   # dev, test, prod
+      - SERVER_ADDR=:8080 # 服务地址
+      - APIVersion=v1     # API版本
+      - ConfigPath=/app/config.yaml # 配置文件路径
+      - WriteTimeout=30 # 写超时时间
+      - ReadTimeout=30  # 读超时时间
+      - ReadHeaderTimeout=30 # 读取头部超时时间
