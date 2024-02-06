@@ -5,6 +5,7 @@ import (
 	"errors"
 	"github.com/chenxingyuu/gin_template/config"
 	"github.com/chenxingyuu/gin_template/internal/app/api/common"
+	"github.com/chenxingyuu/gin_template/pkg/middleware"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -24,6 +25,9 @@ func StartServer(addr string) {
 
 	// 创建 gin 实例
 	app := gin.Default()
+
+	// 设置跨域
+	app.Use(middleware.Cors())
 
 	// 设置路由
 	setupRouter(app)
