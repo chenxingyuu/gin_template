@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/chenxingyuu/gin_template/config"
+	"github.com/chenxingyuu/gin_template/internal/app/api/auth"
 	"github.com/chenxingyuu/gin_template/internal/app/api/common"
 	"github.com/chenxingyuu/gin_template/pkg/middleware"
 	"github.com/gin-gonic/gin"
@@ -80,4 +81,5 @@ func setupRouter(app *gin.Engine) {
 	apiPrefix := "/api/" + config.Env.APIVersion
 	// 设置路由
 	common.SetupRoutes(app, apiPrefix)
+	auth.SetupRoutes(app, apiPrefix)
 }
